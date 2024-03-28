@@ -1,0 +1,28 @@
+﻿@model QuestionOption
+
+@{
+    ViewData["Title"] = "QuestionOptionsAdd";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <hr /><br />
+        <h2 style="font-weight:bold;color:blueviolet;text-align:center"> @ViewBag.soru </h2>
+        <br /><hr />
+
+
+        <form method="post" >
+
+            <div class="input-group input-group-lg">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-lg">DEĞER GİRİNİZ</span>
+                </div>
+                <input type="text" class="form-control" required asp-for="OptionDescription" >
+            </div>
+           
+            <button type="submit" class="btn btn-lg my-5 btn-block btn-outline-primary">Şıkkı Kaydet</button>
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,85 @@
+﻿@model IEnumerable<AnswerLine>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MemberLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru ve Cevaplar</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .soru-cevap-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .soru-cevap {
+            display: flex;
+            gap: 20px;
+        }
+
+        .soru, .cevap {
+            flex: 1;
+            padding: 10px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .cevap {
+            background-color: #e6f7ff; /* Opsiyonel: Cevapları farklı bir arka plan renkte göstermek */
+        }
+
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;color:red">Soru ve Cevaplar</h1>
+    <div class="soru-cevap-container">
+        @if (Model.Count()>0)
+        {
+            @foreach (var item in Model)
+            {
+                <div class="soru-cevap">
+                    <div class="soru">
+                        <h4 style="text-align:center">@item.Question.QuestionLine</h4>
+                    </div>
+                    <div class="cevap">
+                        <p style="text-align:center">@item.Answer</p>
+                    </div>
+
+                </div>
+            }
+        }
+        else
+        {
+            <div class="soru-cevap">
+
+                <div class="cevap">
+                    <h4  style="text-align:center;color:yellowgreen">HERHANGİ BİR SORU CEVAPLAMADINIZ</H4>
+                </div>
+
+            </div>
+        }
+
+
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,116 @@
+﻿@model List<Question>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int sayac = 0;
+}
+
+<h1 style="color:red">SORU LİSTESİ</h1>
+
+<table class="table table-striped ">
+    <tr>
+        <th>#</th>
+        <th>Soru</th>
+        <th>Oluşturma Zamanı</th>
+        <th>Soru Türü</th>
+        <th>Sil</th>
+        <th>Düzenle</th>
+    </tr>
+    @foreach (var item in Model.OrderByDescending(x => x.CreateDate))
+    {
+        if (item.QuestionTypeID == 2 || item.QuestionTypeID == 3)
+        {
+            sayac++;
+            <tr>
+                <th>@sayac</th>
+                <td>@item.QuestionLine</td>
+                <td>@item.CreateDate.ToString("dd-MMM-yyyy HH:mm")</td>
+                <td>@item.QuestionType.QuestionTypeName</td>
+                <td>
+                    <button type="button" class="btn btn-outline-danger btn-lg" data-toggle="modal" data-target="#Sil_@item.Question_ID">
+                        SİL
+                    </button>
+                </td>
+                <td> <a asp-action="QuestionEdit" asp-route-id="@item.Question_ID" class="btn btn-lg btn-outline-primary">DÜZENLE</a>  </td>
+            </tr>
+
+            <div class="modal fade" id="Sil_@item.Question_ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">SORU SİL</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h4>Soruyu silmek istiyor musunuz?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info mx-4" data-dismiss="modal">Vazgeç</button>
+                            @Html.ActionLink("Sil", "QuestionDelete", new { id = @item.Question_ID }, new { @class = "btn btn-danger mx-4" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+</table>
+<br />
+<table class="table table-hover " style="background-color:antiquewhite">
+    <tr>
+        <th>#</th>
+        <th>Soru</th>
+        <th>Oluşturma Zamanı</th>
+        <th>Soru Türü</th>
+        <th>Sil</th>
+        <th>Düzenle</th>
+        <th>Şıkları Ekle</th>
+    </tr>
+    @foreach (var item in Model.OrderByDescending(x => x.CreateDate))
+    {
+        if (item.QuestionTypeID == 1)
+        {
+            sayac++;
+            <tr>
+                <th>@sayac</th>
+                <td>@item.QuestionLine</td>
+                <td>@item.CreateDate.ToString("dd-MMM-yyyy HH:mm")</td>
+                <td>@item.QuestionType.QuestionTypeName</td>
+                <td>
+                    <button type="button" class="btn btn-outline-danger btn-lg" data-toggle="modal" data-target="#Sil_@item.Question_ID">
+                        SİL
+                    </button>
+                </td>
+                <td> <a asp-action="QuestionEdit" asp-route-id="@item.Question_ID" class="btn btn-lg btn-outline-primary">DÜZENLE</a>  </td>
+                <td> <a asp-controller="QuestionOption" asp-action="Index" asp-route-id="@item.Question_ID" class="btn btn-lg btn-outline-info">ŞIK EKLE</a>  </td>
+            </tr>
+
+            <div class="modal fade" id="Sil_@item.Question_ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">SORU SİL</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h4>Soruyu silmek istiyor musunuz?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info mx-4" data-dismiss="modal">Vazgeç</button>
+                            @Html.ActionLink("Sil", "QuestionDelete", new { id = @item.Question_ID }, new { @class = "btn btn-danger mx-4" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+</table>
+<a asp-action="QuestionAdd" class="btn btn-lg btn-outline-success">YENİ SORU EKLEME</a>
+
+

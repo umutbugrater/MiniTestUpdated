@@ -1,0 +1,37 @@
+﻿@using EntityLayer.Concrete
+@model AppUser
+
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element text-center">
+                    <img alt="image" class="rounded-circle mb-3" style="height:90px;width:90px;" src="~/UserImages/@Model.ImageUrl" />
+                    <div class="dropdown-toggle ">
+                        <span class="block m-t-xs font-bold" style=" color:white">@Model.Name @Model.Surname</span>
+                        <span class="text-muted text-xs block "> ADMİN </span>
+                    </div>
+                </div>
+                <div class="logo-element">
+                    UBT
+                </div>
+            </li>
+
+            <li>
+                <a asp-controller="Dashboard" asp-action="Index"><i class="fa fa-dashboard"></i> <span class="nav-label">Dashboard</span></a>
+            </li>
+             <li>
+                <a asp-controller="Question" asp-action="Index"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">SORU EKLE</span></a>
+            </li>
+
+            <li>
+                <a asp-area="" asp-controller="Default" asp-action="Index"> <i class="fa fa-chevron-circle-up"></i> <span class="nav-label">Siteye Git</span></a>
+            </li>
+            <li>
+                <a asp-area="Admin" asp-controller="Login" asp-action="LogOut"><i class="fa fa-sign-out"></i> <span class="nav-label">Çıkış Yap</span></a>
+            </li>
+
+        </ul>
+
+    </div>
+</nav>

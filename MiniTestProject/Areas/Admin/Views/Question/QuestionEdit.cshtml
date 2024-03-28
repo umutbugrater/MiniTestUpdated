@@ -1,0 +1,27 @@
+﻿@model Question
+
+@{
+    ViewData["Title"] = "QuestionEdit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h1 style="color:red">SORU DÜZENLEME</h1>
+
+
+<form method="post">
+    <input type="hidden" asp-for="Question_ID" />
+
+    <label class="control-label"> Kategori Türü</label>
+    @Html.DropDownListFor(x=>x.QuestionTypeID,(List<SelectListItem>)ViewBag.QuestionTypes, new {@class = "form-control"})
+    <br />
+
+    <label>Sorunuzu Düzeltiniz :</label>
+    <input type="text" class="form-control" required asp-for="QuestionLine" />
+    <br />
+
+    <button class="btn btn-lg btn-outline-dark btn-block" type="submit">GÜNCELLE</button>
+    <a asp-action="Index" class="btn btn-lg btn-outline-primary btn-block">GERİ DÖN</a>
+</form>
+
+

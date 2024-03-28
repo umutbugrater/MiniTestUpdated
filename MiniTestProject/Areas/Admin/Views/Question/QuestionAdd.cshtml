@@ -1,0 +1,26 @@
+﻿@model Question
+
+@{
+    ViewData["Title"] = "QuestionAdd";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<h1> Yeni Soru Ekleme</h1>
+
+<form method="post">
+
+    @Html.Label("Soru Türünüzü Seçiniz ..")
+    @Html.DropDownListFor(x=>x.QuestionTypeID,(List<SelectListItem>)ViewBag.QuestionTypes, new {@class = "form-control"})
+
+    <br />
+
+    @Html.Label("Sorunuzu Giriniz:")
+    <input type="text" class="form-control" asp-for="QuestionLine" required />
+    <br />
+    <button class="btn btn-block btn-outline-success" type="submit">SORUYU EKLE</button>
+    <a asp-action="Index" class="btn btn-lg btn-outline-primary btn-block">GERİ DÖN</a>
+</form>
+
+

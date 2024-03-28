@@ -1,0 +1,65 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* İçerik div'i genişlik ve yükseklik 100% olsun */
+        .content {
+            width: 100%;
+            height: 100vh; /* Sayfanın tamamını kaplaması için görünür yükseklik kullan */
+            display: flex;
+            justify-content: center; /* İçerikleri yatayda ortala */
+            align-items: center; /* İçerikleri dikeyde ortala */
+            background-color: #140A25;
+        }
+        /* Butonların boyutunu artıralım */
+        .btn {
+            font-size: 2.5rem; /* Yazı boyutunu artır */
+            padding: 40px 80px; /* Padding değerlerini artırarak buton boyutunu artır */
+        }
+        /* Butonlar arasındaki boşluğu ayarlayalım */
+        .btn-space {
+            margin-bottom: 100px; /* Butonlar arasındaki boşluğu artır */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        <div>
+            <!-- Butonlar için container -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <!-- Grid sistemi kullanarak butonları yatayda ortala -->
+                        <!-- İlk buton -->
+                        <a asp-area="Admin" asp-controller="Login" asp-action="Index" class="btn btn-outline-danger btn-block btn-space">Yönetici Girişi</a>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <!-- İkinci buton -->
+                        <a asp-controller="Login" asp-action="Index" class="btn btn-outline-warning btn-block btn-space">Üye Girişi  </a>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <!-- İkinci buton -->
+                        <a asp-controller="Profile" asp-action="Index" class="btn btn-outline-success btn-block btn-space">Profilim  </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS ve jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

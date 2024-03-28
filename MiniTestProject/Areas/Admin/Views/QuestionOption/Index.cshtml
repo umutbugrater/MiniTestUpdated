@@ -1,0 +1,78 @@
+﻿@model List<QuestionOption>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int sayac = 0;
+}
+
+<div class="card">
+    <div class="card-body">
+        <hr /><br />
+        <h2 style="font-weight:bold;color:blueviolet;text-align:center"> @ViewBag.soru </h2>
+        <br /><hr />
+        <h2 style="color:darkorange;margin-left:300px;font-weight:bold">ŞIKLAR</h2>
+        <br />
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-hover" style="background-color:aliceblue">
+                <tr style="color:red">
+                    <th>ŞIK</th>
+                    <th>Girilen Değer</th>
+                    <th >SİL</th>
+                    <th>GÜNCELLE</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    sayac++;
+                    <tr>
+                        <th> @sayac . ŞIK </th>
+                        <th >@item.OptionDescription</th>
+                        <td>
+                            <button type="button" class="btn btn-outline-danger btn-lg" data-toggle="modal" data-target="#Sil_@item.QuestionOptionID">
+                                SİL
+                            </button>
+                        </td>
+                        <th> <a asp-action="QuestionOptionsUpdate" asp-route-id="@item.QuestionOptionID" class="btn btn-lg btn-outline-primary">Güncelle</a></th>
+                    </tr>
+
+                    <div class="modal fade" id="Sil_@item.QuestionOptionID" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">ŞIK SİL</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h4>Soruya ait şıkkı silmek istiyor musunuz?</h4>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-info btn-lg mx-4" data-dismiss="modal">Vazgeç</button>
+                                    @Html.ActionLink("Sil", "QuestionOptionsDelete", new { id = @item.QuestionOptionID }, new { @class = "btn btn-outline-danger mx-4 btn-lg" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </table>
+        }
+        else
+        {
+            <table class="table table-hover">
+                <tr>
+                    <th>#</th>
+                    <th>Açıklaam</th>
+                    <th>SİL</th>
+                    <th>GÜNCELLE</th>
+                </tr>
+                <tr>
+                    <td colspan="4" style="font-weight:bold;text-align:center;color:white;background-color:red"> BU SORUYA AİT HİÇ ŞIK EKLENMEMİŞTİR</td>
+                </tr>
+            </table>
+        }
+
+        <a asp-action="QuestionOptionsAdd" asp-route-id="@ViewBag.i" class="btn btn-lg btn-block my-5 btn-outline-primary">YENİ ŞIK EKLE</a>
+    </div>
+</div>
